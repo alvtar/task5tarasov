@@ -1,23 +1,25 @@
 package controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Layout;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-
 import service.ServiceFactory;
 import service.ServiceFactoryImpl;
+import service.ServiceRegistratorImpl;
 import action.Action;
 import action.ActionManager;
 import action.ActionManagerFactory;
@@ -25,37 +27,76 @@ import dao.mysql.TransactionFactoryImpl;
 import dao.pool.ConnectionPool;
 import exception.PersistentException;
 
+
+
 public class DispatcherServlet extends HttpServlet {
-	private static Logger logger = Logger.getLogger(DispatcherServlet.class);
+        private static Logger logger = Logger.getLogger(DispatcherServlet.class);
+    
+      public static final Level LOG_LEVEL = Level.ALL;  // Logging all events include Debug (many messages in console)
+      //public static final Level LOG_LEVEL = Level.WARN; // Logging only Warning, Error & Fatal evens
+      
+      public static final String LOG_FILE_NAME = "log.txt";
+      public static final String LOG_MESSAGE_FORMAT = "%n%d%n%p\t%C.%M:%L%n%m%n";
 
-	public static final String LOG_FILE_NAME = "log.txt";
-	public static final Level LOG_LEVEL = Level.ALL;
-	public static final String LOG_MESSAGE_FORMAT = "%n%d%n%p\t%C.%M:%L%n%m%n";
+      public static final String DB_PROPERTIES_FILE = "db.properties";
+      public static final Properties DB_PROPERTIES = new Properties();
+      public static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
+      public static String DB_URL;
+      public static String DB_USER;
+      public static String DB_PASSWORD;
+      public static final int DB_POOL_START_SIZE = 10;
+      public static final int DB_POOL_MAX_SIZE = 1000;
+      public static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
-	public static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
-	public static final String DB_URL = "jdbc:mysql://localhost:3306/library_db?useUnicode=true&characterEncoding=UTF-8";
-	public static final String DB_USER = "library_user";
-	public static final String DB_PASSWORD = "library_password";
-	public static final int DB_POOL_START_SIZE = 10;
-	public static final int DB_POOL_MAX_SIZE = 1000;
-	public static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
-
+      
 	public void init() {
-		try {
-			Logger root = Logger.getRootLogger();
-			Layout layout = new PatternLayout(LOG_MESSAGE_FORMAT);
-			root.addAppender(new FileAppender(layout, LOG_FILE_NAME, true));
-			root.addAppender(new ConsoleAppender(layout));
-			root.setLevel(LOG_LEVEL);
-			ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
-		} catch(PersistentException | IOException e) {
-			logger.error("It is impossible to initialize application", e);
-			destroy();
-		}
-	}
+	    try {
+	            Logger root = Logger.getRootLogger();
+	            Layout layout = new PatternLayout(LOG_MESSAGE_FORMAT);
+	            root.addAppender(new FileAppender(layout, LOG_FILE_NAME, true));
+	            root.addAppender(new ConsoleAppender(layout));
+	            root.setLevel(LOG_LEVEL);
 
+	            DB_PROPERTIES.load(new FileInputStream(DB_PROPERTIES_FILE));
+	            DB_USER = DB_PROPERTIES.getProperty("user");
+	            DB_PASSWORD = DB_PROPERTIES.getProperty("password");
+	            DB_URL = DB_PROPERTIES.getProperty("url");
+	            
+	            
+	            
+	            DB_URL = "jdbc:mysql://localhost:3306/library_db?useUnicode=true&characterEncoding=UTF-8";
+	            DB_USER = "library_user";
+	            DB_PASSWORD = "library_password";
+	            
+	            
+	            
+	            
+	            
+	            
+	            // Creation database connection pool
+	            ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE,
+	                    DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
+	            
+	            new ServiceRegistratorImpl();
+	            
+	        } catch (PersistentException | IOException | SQLException e) {
+	            logger.fatal("It is impossible to initialize application", e);
+	            destroy();
+	        }
+	}
+	    
+	    //// n????????????????????
 	public ServiceFactory getFactory() throws PersistentException {
-		return new ServiceFactoryImpl(new TransactionFactoryImpl());
+	   /*     try {
+                new ServiceRegistratorImpl();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+		return null;*/
+	    
+	    return new ServiceFactoryImpl(new TransactionFactoryImpl());
+		
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

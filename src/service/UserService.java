@@ -4,7 +4,7 @@ import java.util.List;
 import domain.User;
 import exception.PersistentException;
 
-public interface UserService {
+public interface UserService extends Service {
     List<User> findAll() throws PersistentException;
 
     User findById(Integer id) throws PersistentException;

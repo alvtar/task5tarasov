@@ -7,7 +7,7 @@ import domain.Subscription;
 import exception.PersistentException;
 
 
-public class SubscriptionServiceImpl implements SubscriptionService {
+public class SubscriptionServiceImpl extends ServiceImpl implements SubscriptionService {
 
     @Override
     public List<Subscription> findAll() throws PersistentException {

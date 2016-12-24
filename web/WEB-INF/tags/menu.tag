@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <DIV id="header">
-	<H1>Библиотека<BR>«Книжный червь»</H1>
+	<H1>Система подписки на<BR>периодические издания</H1>
 	<c:if test="${not empty authorizedUser}">
 		<UL class="right">
 			<c:forEach items="${menu}" var="item">

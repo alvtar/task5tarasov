@@ -12,7 +12,7 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
-	<filter>
+    <filter>
 		<filter-name>EncodingFilter</filter-name>
 		<filter-class>controller.EncodingFilter</filter-class>
 	</filter>
@@ -20,7 +20,7 @@
 		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
-	<filter>
+    <filter>
 		<filter-name>ActionFromUriFilter</filter-name>
 		<filter-class>controller.ActionFromUriFilter</filter-class>
 	</filter>

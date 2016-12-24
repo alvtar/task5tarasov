@@ -2,11 +2,9 @@ package action.admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
-
 import action.Action;
-import service.ReaderService;
+import service.UserService;
 import exception.PersistentException;
 
 public class ReaderDeleteAction extends AdministratorAction {
@@ -16,7 +14,7 @@ public class ReaderDeleteAction extends AdministratorAction {
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		Forward forward = new Forward("/reader/list.html");
 		try {
-			ReaderService service = factory.getService(ReaderService.class);
+			UserService service = factory.getService(UserService.class);
 			Integer identity = Integer.parseInt(request.getParameter("identity"));
 			service.delete(identity);
 			forward.getAttributes().put("message", "Читатель успешно удалён");

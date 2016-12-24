@@ -4,7 +4,7 @@ import java.util.List;
 import domain.*;
 import exception.PersistentException;
 
-public interface PublicationService {
+public interface PublicationService extends Service {
     List<Publication> findAll() throws PersistentException;
 
     Publication findById(Integer id) throws PersistentException;

@@ -11,8 +11,8 @@
 <HTML>
 <HEAD>
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<TITLE>Библиотека - ${title}</TITLE>
-	<c:url value="/main.css" var="cssUrl"/>
+	<TITLE>ПЕРИОДИКА - ${title}</TITLE>
+	<c:url value="/css/main.css" var="cssUrl"/>
 	<LINK rel="stylesheet" type="text/css" href="${cssUrl}">
 	<c:url value="/js" var="javascriptUrl"/>
 	<SCRIPT type="text/javascript" src="${javascriptUrl}/main.js"></SCRIPT>

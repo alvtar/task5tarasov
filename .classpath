@@ -4,5 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="E:/eclipse/plugins/javax.servlet_3.1.0.v201410161800.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

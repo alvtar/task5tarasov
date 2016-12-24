@@ -14,12 +14,12 @@ public class UserEditAction extends AdministratorAction {
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		request.setAttribute("roles", Role.values());
 		try {
-			Integer identity = (Integer)request.getAttribute("identity");
-			if(identity == null) {
-				identity = Integer.parseInt(request.getParameter("identity"));
+			Integer id = (Integer)request.getAttribute("id");
+			if(id == null) {
+				id = Integer.parseInt(request.getParameter("id"));
 			}
 			UserService service = factory.getService(UserService.class);
-			User user = service.findByIdentity(identity);
+			User user = service.findById(id);
 			if(user != null) {
 				request.setAttribute("user", user);
 			}

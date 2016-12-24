@@ -4,7 +4,7 @@ import java.util.List;
 import domain.Subscription;
 import exception.PersistentException;
 
-public interface SubscriptionService {
+public interface SubscriptionService extends Service {
     List<Subscription> findAll() throws PersistentException;
 
     Subscription findById(Integer id) throws PersistentException;

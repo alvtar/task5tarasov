@@ -7,7 +7,7 @@ import domain.Publication;
 import exception.PersistentException;
 
 
-public class PublicationServiceImpl implements PublicationService {
+public class PublicationServiceImpl extends ServiceImpl  implements PublicationService {
 
     @Override
     public List<Publication> findAll() throws PersistentException {

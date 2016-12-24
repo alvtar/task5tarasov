@@ -16,7 +16,7 @@ public class ReaderEditAction extends AdministratorAction {
 			if(identity == null) {
 				identity = Integer.parseInt(request.getParameter("identity"));
 			}
-			ReaderService service = factory.getService(ReaderService.class);
+			Service service = factory.getService(ReaderService.class);
 			Reader reader = service.findByIdentity(identity);
 			if(reader != null) {
 				request.setAttribute("reader", reader);

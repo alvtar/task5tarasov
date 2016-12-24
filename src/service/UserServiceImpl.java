@@ -7,7 +7,7 @@ import domain.User;
 import exception.PersistentException;
 
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() throws PersistentException {
