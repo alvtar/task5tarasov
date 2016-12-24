@@ -3,7 +3,7 @@
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <c:choose>
 	<c:when test="${not empty user}">
-		<c:set var="roleIdentity" value="${user.role.identity}"/>
+		<c:set var="roleId" value="${user.role.id}"/>
 		<c:set var="login" value="${user.login}"/>
 		<c:set var="title" value="Сотрудник «${user.login}»"/>
 	</c:when>
@@ -16,7 +16,7 @@
 	<c:url value="/user/save.html" var="userSaveUrl"/>
 	<FORM action="${userSaveUrl}" method="post" onsubmit="return validateEditUser(this)">
 		<c:if test="${not empty user}">
-			<INPUT type="hidden" name="identity" value="${user.identity}">
+			<INPUT type="hidden" name="id" value="${user.id}">
 		</c:if>
 		<LABEL for="login">Имя пользователя:</LABEL>
 		<INPUT type="text" id="login" name="login" value="${login}">
@@ -24,10 +24,10 @@
 		<SELECT id="role" name="role">
 			<c:forEach items="${roles}" var="role">
 				<c:remove var="selected"/>
-				<c:if test="${not empty roleIdentity and roleIdentity eq role.identity}">
+				<c:if test="${not empty roleId and roleId eq role.id}">
 					<c:set var="selected" value="selected"/>
 				</c:if>
-				<OPTION value="${role.identity}" ${selected}>${role.name}</OPTION>
+				<OPTION value="${role.id}" ${selected}>${role.name}</OPTION>
 			</c:forEach>
 		</SELECT>
 		<BUTTON type="submit">Сохранить</BUTTON>
@@ -39,7 +39,7 @@
 	<c:if test="${not empty user}">
 		<c:url value="/user/delete.html" var="userDeleteUrl"/>
 		<FORM action="${userDeleteUrl}" method="post" id="form-delete" onsubmit="return confirmation(this, 'Вы уверены, что хотите удалить сотрудника?')">
-			<INPUT type="hidden" name="identity" value="${user.identity}">
+			<INPUT type="hidden" name="id" value="${user.id}">
 		</FORM>
 	</c:if>
 </u:html>

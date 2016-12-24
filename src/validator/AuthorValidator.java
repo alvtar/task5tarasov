@@ -9,12 +9,12 @@ public class AuthorValidator implements Validator<Author> {
 	@Override
 	public Author validate(HttpServletRequest request) throws IncorrectFormDataException {
 		Author author = new Author();
-		String parameter = request.getParameter("identity");
+		String parameter = request.getParameter("id");
 		if(parameter != null) {
 			try {
-				author.setIdentity(Integer.parseInt(parameter));
+				author.setId(Integer.parseInt(parameter));
 			} catch(NumberFormatException e) {
-				throw new IncorrectFormDataException("identity", parameter);
+				throw new IncorrectFormDataException("id", parameter);
 			}
 		}
 		parameter = request.getParameter("surname");

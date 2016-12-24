@@ -2,57 +2,55 @@ package validator;
 
 import javax.servlet.http.HttpServletRequest;
 
-import domain.Reader;
+import domain.User;
 import exception.IncorrectFormDataException;
 
-public class ReaderValidator implements Validator<Reader> {
+public class ReaderValidator implements Validator<User> {
 	@Override
-	public Reader validate(HttpServletRequest request) throws IncorrectFormDataException {
-		Reader reader = new Reader();
-		String parameter = request.getParameter("identity");
+	public User validate(HttpServletRequest request) throws IncorrectFormDataException {
+		User user = new User();
+		String parameter = request.getParameter("id");
 		if(parameter != null) {
 			try {
-				reader.setIdentity(Integer.parseInt(parameter));
+				user.setId(Integer.parseInt(parameter));
 			} catch(NumberFormatException e) {
-				throw new IncorrectFormDataException("identity", parameter);
+				throw new IncorrectFormDataException("id", parameter);
 			}
 		}
-		parameter = request.getParameter("libraryCardNumber");
+		parameter = request.getParameter("login");
 		if(parameter != null && !parameter.isEmpty()) {
-			reader.setLibraryCardNumber(parameter);
+			user.setLogin(parameter);
 		} else {
-			throw new IncorrectFormDataException("libraryCardNumber", parameter);
+			throw new IncorrectFormDataException("login", parameter);
 		}
-		parameter = request.getParameter("surname");
+		parameter = request.getParameter("password");
 		if(parameter != null && !parameter.isEmpty()) {
-			reader.setSurname(parameter);
+			user.setPassword(parameter);
 		} else {
-			throw new IncorrectFormDataException("surname", parameter);
+			throw new IncorrectFormDataException("password", parameter);
 		}
-		parameter = request.getParameter("name");
+		
+		parameter = request.getParameter("fullName");
 		if(parameter != null && !parameter.isEmpty()) {
-			reader.setName(parameter);
+			user.setFullName(parameter);
 		} else {
-			throw new IncorrectFormDataException("name", parameter);
+			throw new IncorrectFormDataException("fullName", parameter);
 		}
-		parameter = request.getParameter("patronymic");
+		
+		parameter = request.getParameter("zipCode");
 		if(parameter != null && !parameter.isEmpty()) {
-			reader.setPatronymic(parameter);
+			user.setZipCode(Integer.parseInt(parameter));
 		} else {
-			throw new IncorrectFormDataException("patronymic", parameter);
+			throw new IncorrectFormDataException("zipCode", parameter);
 		}
+		
 		parameter = request.getParameter("address");
 		if(parameter != null && !parameter.isEmpty()) {
-			reader.setAddress(parameter);
+			user.setAddress(parameter);
 		} else {
 			throw new IncorrectFormDataException("address", parameter);
 		}
-		parameter = request.getParameter("phone");
-		if(parameter != null && !parameter.isEmpty()) {
-			reader.setPhone(parameter);
-		} else {
-			throw new IncorrectFormDataException("phone", parameter);
-		}
-		return reader;
+		
+		return user;
 	}
 }

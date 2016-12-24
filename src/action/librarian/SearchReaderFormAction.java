@@ -10,9 +10,9 @@ public class SearchReaderFormAction extends LibrarianAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		Forward forward = new Forward("/search/reader/form.jsp", false);
-		Integer bookIdentity = (Integer)request.getAttribute("bookIdentity");
-		if(bookIdentity != null) {
-			forward.getAttributes().put("bookIdentity", bookIdentity);
+		Integer bookId = (Integer)request.getAttribute("bookId");
+		if(bookId != null) {
+			forward.getAttributes().put("bookId", bookId);
 		}
 		return forward;
 	}

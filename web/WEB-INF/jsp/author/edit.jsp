@@ -19,7 +19,7 @@
 	<c:url value="/author/save.html" var="authorSaveUrl"/>
 	<FORM action="${authorSaveUrl}" method="post" onsubmit="return validateEditAuthor(this)">
 		<c:if test="${not empty author}">
-			<INPUT type="hidden" name="identity" value="${author.identity}">
+			<INPUT type="hidden" name="id" value="${author.id}">
 		</c:if>
 		<LABEL for="surname">Фамилия:</LABEL>
 		<INPUT type="text" id="surname" name="surname" value="${surname}">
@@ -43,7 +43,7 @@
 	<c:if test="${not empty author}">
 		<c:url value="/author/delete.html" var="authorDeleteUrl"/>
 		<FORM action="${authorDeleteUrl}" method="post" id="form-delete" onsubmit="return confirmation(this, 'Вы уверены, что хотите удалить автора?')">
-			<INPUT type="hidden" name="identity" value="${author.identity}">
+			<INPUT type="hidden" name="id" value="${author.id}">
 		</FORM>
 	</c:if>
 </u:html>

@@ -23,10 +23,10 @@
 							<c:remove var="classname"/>
 						</c:otherwise>
 					</c:choose>
-					<TR onclick="submitFormById('form-${book.identity}')" class="${classname}">
+					<TR onclick="submitFormById('form-${book.id}')" class="${classname}">
 						<TD>${book.inventoryNumber}
-							<FORM action="${bookUsagesUrl}" id="form-${book.identity}" method="post">
-								<INPUT type="hidden" name="identity" value="${book.identity}">
+							<FORM action="${bookUsagesUrl}" id="form-${book.id}" method="post">
+								<INPUT type="hidden" name="id" value="${book.id}">
 							</FORM>
 						</TD>
 						<TD>

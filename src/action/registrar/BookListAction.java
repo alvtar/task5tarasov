@@ -15,19 +15,19 @@ import exception.PersistentException;
 public class BookListAction extends RegistrarAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-		Integer identity = (Integer)request.getAttribute("identity");
-		if(identity == null) {
+		Integer id = (Integer)request.getAttribute("id");
+		if(id == null) {
 			try {
-				identity = Integer.parseInt(request.getParameter("identity"));
+				id = Integer.parseInt(request.getParameter("id"));
 			} catch(NumberFormatException e) {}
 		}
-		if(identity != null) {
+		if(id != null) {
 			AuthorService authorService = factory.getService(AuthorService.class);
-			Author author = authorService.findByIdentity(identity);
+			Author author = authorService.findById(id);
 			request.setAttribute("author", author);
 		}
 		BookService bookService = factory.getService(BookService.class);
-		List<Book> books = bookService.findByAuthor(identity);
+		List<Book> books = bookService.findByAuthor(id);
 		request.setAttribute("books", books);
 		return null;
 	}

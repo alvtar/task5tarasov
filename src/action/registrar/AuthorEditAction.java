@@ -16,13 +16,13 @@ public class AuthorEditAction extends RegistrarAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		try {
-			Integer identity = Integer.parseInt(request.getParameter("identity"));
+			Integer id = Integer.parseInt(request.getParameter("id"));
 			AuthorService authorService = factory.getService(AuthorService.class);
-			Author author = authorService.findByIdentity(identity);
+			Author author = authorService.findById(id);
 			if(author != null) {
 				request.setAttribute("author", author);
 				BookService bookService = factory.getService(BookService.class);
-				List<Book> books = bookService.findByAuthor(identity);
+				List<Book> books = bookService.findByAuthor(id);
 				request.setAttribute("books", books);
 			}
 		} catch(NumberFormatException e) {}

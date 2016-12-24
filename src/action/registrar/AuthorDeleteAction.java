@@ -17,10 +17,10 @@ public class AuthorDeleteAction extends RegistrarAction {
 		Forward forward = new Forward("/author/list.html");
 		try {
 			AuthorService service = factory.getService(AuthorService.class);
-			Integer identity = Integer.parseInt(request.getParameter("identity"));
-			service.delete(identity);
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			service.delete(id);
 			forward.getAttributes().put("message", "Автор успешно удалён");
-			logger.info(String.format("User \"%s\" deleted author with identity %d", getAuthorizedUser().getLogin(), identity));
+			logger.info(String.format("User \"%s\" deleted author with id %d", getAuthorizedUser().getLogin(), id));
 		} catch(NumberFormatException e) {
 			logger.warn(String.format("Incorrect data was found when user \"%s\" tried to delete author", getAuthorizedUser().getLogin()), e);
 		}

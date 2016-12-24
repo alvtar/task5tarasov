@@ -13,12 +13,12 @@ public class ReturnBookAction extends LibrarianAction {
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		Forward forward = new Forward("/reader/usages.html");
 		try {
-			Integer usageIdentity = Integer.parseInt(request.getParameter("usageIdentity"));
+			Integer usageId = Integer.parseInt(request.getParameter("usageId"));
 			UsageService service = factory.getService(UsageService.class);
-			Usage usage = service.findByIdentity(usageIdentity);
+			Usage usage = service.findById(usageId);
 			if(usage != null) {
 				service.save(usage);
-				forward.getAttributes().put("identity", usage.getReader().getIdentity());
+				forward.getAttributes().put("id", usage.getReader().getId());
 			}
 		} catch(NumberFormatException e) {}
 		return forward;

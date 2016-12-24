@@ -12,17 +12,17 @@ public class ReaderUsageListAction extends LibrarianAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		Forward forward = new Forward("/reader/usages.jsp", false);
-		Integer bookIdentity = (Integer)request.getAttribute("bookIdentity");
-		if(bookIdentity != null) {
-			forward.getAttributes().put("bookIdentity", bookIdentity);
+		Integer bookId = (Integer)request.getAttribute("bookId");
+		if(bookId != null) {
+			forward.getAttributes().put("bookId", bookId);
 		}
 		try {
-			Integer identity = (Integer)request.getAttribute("identity");
-			if(identity == null) {
-				identity = Integer.parseInt(request.getParameter("identity"));
+			Integer id = (Integer)request.getAttribute("id");
+			if(id == null) {
+				id = Integer.parseInt(request.getParameter("id"));
 			}
 			ReaderService readerService = factory.getService(ReaderService.class);
-			Reader reader = readerService.findByIdentity(identity);
+			Reader reader = readerService.findById(id);
 			if(reader != null) {
 				request.setAttribute("reader", reader);
 			}

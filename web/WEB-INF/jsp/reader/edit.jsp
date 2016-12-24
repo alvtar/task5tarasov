@@ -4,53 +4,55 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <c:choose>
-	<c:when test="${not empty reader}">
-		<c:set var="libraryCardNumber" value="${reader.libraryCardNumber}"/>
-		<c:set var="surname" value="${reader.surname}"/>
-		<c:set var="name" value="${reader.name}"/>
-		<c:set var="patronymic" value="${reader.patronymic}"/>
-		<c:set var="address" value="${reader.address}"/>
-		<c:set var="phone" value="${reader.phone}"/>
-		<c:set var="title" value="Читатель ${reader.surname} ${reader.name} ${reader.patronymic}"/>
+	<c:when test="${not empty user}">
+		<c:set var="id" value="${user.id}"/>
+		<c:set var="login" value="${user.login}"/>
+		<c:set var="password" value="${user.password}"/>
+		<c:set var="fullName" value="${user.fullName}"/>
+		<c:set var="zipCode" value="${user.zipCode}"/>
+		<c:set var="address" value="${user.address}"/>
+		<c:set var="title" value="Подписчик ${user.fullName} ${user.zipCode} ${user.address}"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="title" value="Новый читатель"/>
+		<c:set var="title" value="Новый подписчик"/>
 	</c:otherwise>
 </c:choose>
-<u:html title="${title}" message="${message}" validator="validator-of-edit-reader-form.js">
+<u:html title="${title}" message="${message}" validator="validator-of-edit-user-form.js">
 	<H2>${title}</H2>
-	<c:url value="/reader/save.html" var="readerSaveUrl"/>
-	<FORM action="${readerSaveUrl}" method="post" onsubmit="return validateEditReader(this)">
-		<c:if test="${not empty reader}">
-			<INPUT type="hidden" name="identity" value="${reader.identity}">
+	<c:url value="/user/save.html" var="userSaveUrl"/>
+	<FORM action="${userSaveUrl}" method="post" onsubmit="return validateEditReader(this)">
+		<c:if test="${not empty user}">
+			<INPUT type="hidden" name="id" value="${user.id}">
 		</c:if>
-		<LABEL for="libraryCardNumber">Номер читательского билета:</LABEL>
-		<INPUT type="text" id="libraryCardNumber" name="libraryCardNumber" value="${libraryCardNumber}">
-		<LABEL for="surname">Фамилия:</LABEL>
-		<INPUT type="text" id="surname" name="surname" value="${surname}">
-		<LABEL for="name">Имя:</LABEL>
-		<INPUT type="text" id="name" name="name" value="${name}">
-		<LABEL for="patronymic">Отчество:</LABEL>
-		<INPUT type="text" id="patronymic" name="patronymic" value="${patronymic}">
-		<LABEL for="address">Адрес:</LABEL>
+		<LABEL for="id">Id:</LABEL>
+		<INPUT type="text" id="id" name="id" value="${id}">
+		<LABEL for="login">Логин:</LABEL>
+		<INPUT type="text" id="login" name="login" value="${login}">
+		<LABEL for="password">Пароль:</LABEL>
+		<INPUT type="text" id="password" name="password" value="${password}">
+		<LABEL for="fullName">Ф.И.О.:</LABEL>
+		<INPUT type="text" id="fullName" name="fullName" value="${fullName}">
+		<LABEL for="zipCode">Индекс:</LABEL>
+		<INPUT type="text" id="zipCode" name="zipCode" value="${zipCode}">
+        
+        <LABEL for="address">Адрес:</LABEL>
 		<INPUT type="text" id="address" name="address" value="${address}">
-		<LABEL for="phone">Телефон:</LABEL>
-		<INPUT type="text" id="phone" name="phone" value="${phone}">
+		
 		<BUTTON type="submit">Сохранить</BUTTON>
-		<c:if test="${not empty reader}">
-			<c:if test="${not empty reader.returnedUsages or not empty reader.currentUsages or not empty reader.overdueUsages}">
+		<c:if test="${not empty user}">
+			<c:if test="${not empty user.returnedUsages or not empty user.currentUsages or not empty user.overdueUsages}">
 				<c:set var="disabled" value="disabled"/>
 			</c:if>
 			<BUTTON type="button" onclick="submitFormById('form-delete')" ${disabled}>Удалить</BUTTON>
 		</c:if>
 		<BUTTON type="reset">Сбросить</BUTTON>
 	</FORM>
-	<c:if test="${not empty reader}">
-		<c:url value="/reader/delete.html" var="readerDeleteUrl"/>
-		<FORM action="${readerDeleteUrl}" method="post" id="form-delete" onsubmit="return confirmation(this, 'Вы уверены, что хотите удалить читателя?')">
-			<INPUT type="hidden" name="identity" value="${reader.identity}">
+	<c:if test="${not empty user}">
+		<c:url value="/user/delete.html" var="userDeleteUrl"/>
+		<FORM action="${userDeleteUrl}" method="post" id="form-delete" onsubmit="return confirmation(this, 'Вы уверены, что хотите удалить читателя?')">
+			<INPUT type="hidden" name="id" value="${user.id}">
 		</FORM>
-		<c:if test="${not empty reader.overdueUsages}">
+		<c:if test="${not empty user.overdueUsages}">
 			<H2>Список невозвращённых вовремя книг</H2>
 			<TABLE>
 				<TR>
@@ -59,7 +61,7 @@
 					<TH>Дата выдачи</TH>
 					<TH>Планируемая дата возврата</TH>
 				</TR>
-				<c:forEach items="${reader.overdueUsages}" var="usage">
+				<c:forEach items="${user.overdueUsages}" var="usage">
 					<TR>
 						<TD>
 							<c:choose>

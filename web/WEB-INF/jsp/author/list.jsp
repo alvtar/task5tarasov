@@ -19,11 +19,11 @@
 			</TD>
 		</TR>
 		<c:forEach items="${authors}" var="author">
-			<TR onclick="submitFormById('form-${author.identity}')">
+			<TR onclick="submitFormById('form-${author.id}')">
 				<TD>
 					${author.surname}
-					<FORM id="form-${author.identity}" action="${authorBookListUrl}" method="post">
-						<INPUT type="hidden" name="identity" value="${author.identity}">
+					<FORM id="form-${author.id}" action="${authorBookListUrl}" method="post">
+						<INPUT type="hidden" name="id" value="${author.id}">
 					</FORM>
 				</TD>
 				<TD>${author.name}</TD>

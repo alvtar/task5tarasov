@@ -11,7 +11,7 @@
 </c:if>
 <c:url value="/author/book/usages.html" var="bookUsagesUrl"/>
 <c:forEach items="${usages}" var="usage">
-	<TR onclick="submitFormById('form-${usage.book.identity}')" class="${classname}">
+	<TR onclick="submitFormById('form-${usage.book.id}')" class="${classname}">
 		<TD>
 			<c:choose>
 				<c:when test="${not empty usage.book.author}">
@@ -23,8 +23,8 @@
 			</c:choose>
 		</TD>
 		<TD>«${usage.book.title}»
-			<FORM action="${bookUsagesUrl}" id="form-${usage.book.identity}" method="post">
-				<INPUT type="hidden" name="identity" value="${usage.book.identity}">
+			<FORM action="${bookUsagesUrl}" id="form-${usage.book.id}" method="post">
+				<INPUT type="hidden" name="id" value="${usage.book.id}">
 			</FORM>
 		</TD>
 		<TD><fmt:formatDate value="${usage.deliveryDate}" pattern="dd.MM.yyyy"/></TD>

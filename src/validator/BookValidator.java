@@ -10,12 +10,12 @@ public class BookValidator implements Validator<Book> {
 	@Override
 	public Book validate(HttpServletRequest request) throws IncorrectFormDataException {
 		Book book = new Book();
-		String parameter = request.getParameter("identity");
+		String parameter = request.getParameter("id");
 		if(parameter != null) {
 			try {
-				book.setIdentity(Integer.parseInt(parameter));
+				book.setId(Integer.parseInt(parameter));
 			} catch(NumberFormatException e) {
-				throw new IncorrectFormDataException("identity", parameter);
+				throw new IncorrectFormDataException("id", parameter);
 			}
 		}
 		parameter = request.getParameter("inventoryNumber");
@@ -28,7 +28,7 @@ public class BookValidator implements Validator<Book> {
 		if(parameter != null && !parameter.isEmpty()) {
 			Author author = new Author();
 			try {
-				author.setIdentity(Integer.parseInt(parameter));
+				author.setId(Integer.parseInt(parameter));
 				book.setAuthor(author);
 			} catch(NumberFormatException e) {
 				throw new IncorrectFormDataException("author", parameter);

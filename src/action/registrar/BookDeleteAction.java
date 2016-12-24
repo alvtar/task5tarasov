@@ -18,15 +18,15 @@ public class BookDeleteAction extends RegistrarAction {
 		Forward forward = new Forward("/author/book/list.html");
 		try {
 			BookService service = factory.getService(BookService.class);
-			Integer identity = Integer.parseInt(request.getParameter("identity"));
-			Book book = service.findByIdentity(identity);
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Book book = service.findById(id);
 			if(book != null) {
-				if(book.getAuthor() != null && book.getAuthor().getIdentity() != null) {
-					forward.getAttributes().put("identity", book.getAuthor().getIdentity());
+				if(book.getAuthor() != null && book.getAuthor().getId() != null) {
+					forward.getAttributes().put("id", book.getAuthor().getId());
 				}
-				service.delete(identity);
+				service.delete(id);
 				forward.getAttributes().put("message", "Книга успешно удалена");
-				logger.info(String.format("User \"%s\" deleted book with identity %d", getAuthorizedUser().getLogin(), identity));
+				logger.info(String.format("User \"%s\" deleted book with id %d", getAuthorizedUser().getLogin(), id));
 			}
 		} catch(NumberFormatException e) {
 			logger.warn(String.format("Incorrect data was found when user \"%s\" tried to delete book", getAuthorizedUser().getLogin()), e);

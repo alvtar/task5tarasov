@@ -26,7 +26,7 @@ public class UserSaveAction extends AdministratorAction {
 			service.save(user);
 			forward.getAttributes().put("id", user.getId());
 			forward.getAttributes().put("message", "Данные сотрудника успешно сохранены");
-			logger.info(String.format("User \"%s\" saved user with identity %d", getAuthorizedUser().getLogin(), user.getId()));
+			logger.info(String.format("User \"%s\" saved user with id %d", getAuthorizedUser().getLogin(), user.getId()));
 		} catch(IncorrectFormDataException e) {
 			forward.getAttributes().put("message", "Были обнаружены некорректные данные");
 			logger.warn(String.format("Incorrect data was found when user \"%s\" tried to save user", getAuthorizedUser().getLogin()), e);

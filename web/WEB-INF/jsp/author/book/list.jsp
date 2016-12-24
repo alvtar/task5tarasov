@@ -22,7 +22,7 @@
 	<c:if test="${not empty author}">
 		<c:url value="/author/edit.html" var="authorEditUrl"/>
 		<FORM action="${authorEditUrl}" method="post">
-			<INPUT type="hidden" name="identity" value="${author.identity}">
+			<INPUT type="hidden" name="id" value="${author.id}">
 			<BUTTON type="submit">Изменить автора</BUTTON>
 		</FORM>
 	</c:if>
@@ -36,11 +36,11 @@
 					<TH>Год издания</TH>
 				</TR>
 				<c:forEach items="${books}" var="book">
-					<TR onclick="submitFormById('form-${book.identity}')">
+					<TR onclick="submitFormById('form-${book.id}')">
 						<TD>
 							${book.inventoryNumber}
-							<FORM id="form-${book.identity}" action="${authorBookEditUrl}" method="post">
-								<INPUT type="hidden" name="identity" value="${book.identity}">
+							<FORM id="form-${book.id}" action="${authorBookEditUrl}" method="post">
+								<INPUT type="hidden" name="id" value="${book.id}">
 							</FORM>
 						</TD>
 						<TD>${book.title}</TD>
@@ -55,7 +55,7 @@
 	</c:choose>
 	<FORM action="${authorBookEditUrl}" method="post">
 		<c:if test="${not empty author}">
-			<INPUT type="hidden" name="authorIdentity" value="${author.identity}">
+			<INPUT type="hidden" name="authorId" value="${author.id}">
 		</c:if>
 		<BUTTON type="submit">Добавить книгу</BUTTON>
 	</FORM>

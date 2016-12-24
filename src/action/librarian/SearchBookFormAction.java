@@ -1,33 +1,32 @@
 package action.librarian;
 
 import java.util.List;
-import java.util.Map;
+///import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import domain.Author;
-import domain.Book;
-import service.AuthorService;
-import service.BookService;
 import action.Action;
+import domain.Publication;
+import domain.Subscription;
 import exception.PersistentException;
+import service.PublicationService;
+import service.SubscriptionService;
 
 public class SearchBookFormAction extends LibrarianAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		Forward forward = new Forward("/search/book/form.jsp", false);
-		Integer readerIdentity = (Integer)request.getAttribute("readerIdentity");
-		if(readerIdentity != null) {
-			forward.getAttributes().put("readerIdentity", readerIdentity);
+		Integer userId = (Integer)request.getAttribute("userId");
+		if(userId != null) {
+			forward.getAttributes().put("userId", userId);
 		}
-		AuthorService authorService = factory.getService(AuthorService.class);
-		Map<Author, Integer> authors = authorService.findAllWithNumberOfBooks();
-		request.setAttribute("authors", authors);
-		BookService bookService = factory.getService(BookService.class);
-		List<Book> books = bookService.findByAuthor(null);
-		if(!books.isEmpty()) {
-			request.setAttribute("numberOfBooksWithoutAuthor", books.size());
+		PublicationService publicationService = factory.getService(PublicationService.class);
+		List<Publication> publications = publicationService.findAll();
+		request.setAttribute("authors", publications);
+		SubscriptionService subscriptionService = factory.getService(SubscriptionService.class);
+		List<Subscription> subscriptions = subscriptionService.findAll();
+		if(!subscriptions.isEmpty()) {
+			request.setAttribute("numberOfBooksWithoutAuthor", subscriptions.size());
 		}
 		return forward;
 	}

@@ -26,11 +26,11 @@
 							<c:remove var="classname"/>
 						</c:otherwise>
 					</c:choose>
-					<TR onclick="submitFormById('form-${reader.identity}')" class="${classname}">
+					<TR onclick="submitFormById('form-${reader.id}')" class="${classname}">
 						<TD>
 							${reader.libraryCardNumber}
-							<FORM id="form-${reader.identity}" action="${readerUsagesUrl}" method="post">
-								<INPUT type="hidden" name="identity" value="${reader.identity}">
+							<FORM id="form-${reader.id}" action="${readerUsagesUrl}" method="post">
+								<INPUT type="hidden" name="id" value="${reader.id}">
 							</FORM>
 						</TD>
 						<TD>${reader.surname}</TD>

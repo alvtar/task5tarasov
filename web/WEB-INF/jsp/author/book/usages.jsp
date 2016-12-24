@@ -40,14 +40,14 @@
 		<c:when test="${empty book.currentUsage}">
 			<c:url value="/author/book/deliver.html" var="bookDeliverUrl"/>
 			<FORM action="${bookDeliverUrl}" method="post">
-				<INPUT type="hidden" name="bookIdentity" value="${book.identity}">
+				<INPUT type="hidden" name="bookId" value="${book.id}">
 				<BUTTON type="submit">Выдать</BUTTON>
 			</FORM>
 		</c:when>
 		<c:otherwise>
 			<c:url value="/author/book/return.html" var="bookReturnUrl"/>
 			<FORM action="${bookReturnUrl}" method="post">
-				<INPUT type="hidden" name="usageIdentity" value="${book.currentUsage.identity}">
+				<INPUT type="hidden" name="usageId" value="${book.currentUsage.id}">
 				<BUTTON type="submit">Принять</BUTTON>
 			</FORM>
 		</c:otherwise>
@@ -64,11 +64,11 @@
 					<TH>Фактическая дата возврата</TH>
 				</TR>
 				<c:if test="${not empty book.currentUsage}">
-					<TR class="special" onclick="submitFormById('form-${book.currentUsage.reader.identity}')">
+					<TR class="special" onclick="submitFormById('form-${book.currentUsage.reader.id}')">
 						<TD>
 							<u:person value="${book.currentUsage.reader}"/>
-							<FORM action="${readerUsagesUrl}" id="form-${book.currentUsage.reader.identity}" method="post">
-								<INPUT type="hidden" name="identity" value="${book.currentUsage.reader.identity}">
+							<FORM action="${readerUsagesUrl}" id="form-${book.currentUsage.reader.id}" method="post">
+								<INPUT type="hidden" name="id" value="${book.currentUsage.reader.id}">
 							</FORM>
 						</TD>
 						<TD><fmt:formatDate value="${book.currentUsage.deliveryDate}" pattern="dd.MM.yyyy"/></TD>
@@ -78,11 +78,11 @@
 				</c:if>
 				<c:if test="${not empty book.usages}">
 					<c:forEach items="${book.usages}" var="usage">
-						<TR onclick="submitFormById('form-${usage.reader.identity}')">
+						<TR onclick="submitFormById('form-${usage.reader.id}')">
 							<TD>
 								<u:person value="${usage.reader}"/>
-								<FORM action="${readerUsagesUrl}" id="form-${usage.reader.identity}" method="post">
-									<INPUT type="hidden" name="identity" value="${usage.reader.identity}">
+								<FORM action="${readerUsagesUrl}" id="form-${usage.reader.id}" method="post">
+									<INPUT type="hidden" name="id" value="${usage.reader.id}">
 								</FORM>
 							</TD>
 							<TD><fmt:formatDate value="${usage.deliveryDate}" pattern="dd.MM.yyyy"/></TD>

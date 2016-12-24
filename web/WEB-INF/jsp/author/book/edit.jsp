@@ -7,7 +7,7 @@
 	<c:set var="title" value="${book.title}"/>
 	<c:set var="year" value="${book.year}"/>
 	<c:if test="${not empty book.author}">
-		<c:set var="selectedAuthorIdentity" value="${book.author.identity}"/>
+		<c:set var="selectedAuthorId" value="${book.author.id}"/>
 	</c:if>
 </c:if>
 <u:html title="Книга" message="${message}" validator="validator-of-edit-book-form.js">
@@ -15,7 +15,7 @@
 	<c:url value="/author/book/save.html" var="authorBookSaveUrl"/>
 	<FORM action="${authorBookSaveUrl}" method="post" onsubmit="return validateEditBook(this)">
 		<c:if test="${not empty book}">
-			<INPUT type="hidden" name="identity" value="${book.identity}">
+			<INPUT type="hidden" name="id" value="${book.id}">
 		</c:if>
 		<LABEL for="inventoryNumber">Инвентарный номер:</LABEL>
 		<INPUT type="text" id="inventoryNumber" name="inventoryNumber" value="${inventoryNumber}">
@@ -32,14 +32,14 @@
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${author.identity == selectedAuthorIdentity}">
+					<c:when test="${author.id == selectedAuthorId}">
 						<c:set var="selected" value="selected"/>
 					</c:when>
 					<c:otherwise>
 						<c:remove var="selected"/>
 					</c:otherwise>
 				</c:choose>
-				<OPTION value="${author.identity}" ${selected}><u:person value="${author}"/> ${yearsOfLife}</OPTION>
+				<OPTION value="${author.id}" ${selected}><u:person value="${author}"/> ${yearsOfLife}</OPTION>
 			</c:forEach>
 		</SELECT>
 		<LABEL for="title">Название:</LABEL>
@@ -58,7 +58,7 @@
 	<c:if test="${not empty book}">
 		<c:url value="/author/book/delete.html" var="authorBookDeleteUrl"/>
 		<FORM action="${authorBookDeleteUrl}" method="post" id="form-delete" onsubmit="return confirmation(this, 'Вы уверены, что хотите удалить книгу?')">
-			<INPUT type="hidden" name="identity" value="${book.identity}">
+			<INPUT type="hidden" name="id" value="${book.id}">
 		</FORM>
 	</c:if>
 </u:html>

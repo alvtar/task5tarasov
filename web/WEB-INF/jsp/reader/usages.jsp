@@ -32,7 +32,7 @@
 	</c:if>
 	<c:url value="/author/book/deliver.html" var="bookDeliverUrl"/>
 	<FORM action="${bookDeliverUrl}" method="post">
-		<INPUT type="hidden" name="readerIdentity" value="${reader.identity}">
+		<INPUT type="hidden" name="readerId" value="${reader.id}">
 		<BUTTON type="submit" ${disabled}>Выдать книгу</BUTTON>
 	</FORM>
 	<c:choose>

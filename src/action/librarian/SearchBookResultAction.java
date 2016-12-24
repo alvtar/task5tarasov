@@ -15,17 +15,17 @@ public class SearchBookResultAction extends LibrarianAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		Forward forward = new Forward("/search/book/result.jsp", false);
-		Integer readerIdentity = (Integer)request.getAttribute("readerIdentity");
-		if(readerIdentity != null) {
-			forward.getAttributes().put("readerIdentity", readerIdentity);
+		Integer readerId = (Integer)request.getAttribute("readerId");
+		if(readerId != null) {
+			forward.getAttributes().put("readerId", readerId);
 		}
 		List<Book> books;
 		BookService service = factory.getService(BookService.class);
 		String inventoryNumber = request.getParameter("inventoryNumber");
 		String search = request.getParameter("search");
-		Integer identity = null;
+		Integer id = null;
 		try {
-			identity = Integer.parseInt(request.getParameter("identity"));
+			id = Integer.parseInt(request.getParameter("id"));
 		} catch(NumberFormatException e) {}
 		if(inventoryNumber != null) {
 			books = new ArrayList<>();
@@ -36,7 +36,7 @@ public class SearchBookResultAction extends LibrarianAction {
 		} else if(search != null) {
 			books = service.findByTitle(search);
 		} else {
-			books = service.findByAuthor(identity);
+			books = service.findByAuthor(id);
 		}
 		request.setAttribute("books", books);
 		return forward;

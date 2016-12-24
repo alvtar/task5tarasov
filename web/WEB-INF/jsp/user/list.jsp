@@ -10,11 +10,11 @@
 		</TR>
 		<c:url value="/user/edit.html" var="userEditUrl"/>
 		<c:forEach items="${users}" var="user">
-			<TR onclick="submitFormById('form-${user.identity}')">
+			<TR onclick="submitFormById('form-${user.id}')">
 				<TD>
 					${user.login}
-					<FORM id="form-${user.identity}" action="${userEditUrl}" method="post">
-						<INPUT type="hidden" name="identity" value="${user.identity}">
+					<FORM id="form-${user.id}" action="${userEditUrl}" method="post">
+						<INPUT type="hidden" name="id" value="${user.id}">
 					</FORM>
 				</TD>
 				<TD>${user.role.name}</TD>

@@ -19,19 +19,19 @@ public class BookEditAction extends RegistrarAction {
 		List<Author> authors = authorService.findAll();
 		request.setAttribute("authors", authors);
 		try {
-			Integer identity = (Integer)request.getAttribute("identity");
-			if(identity == null) {
-				identity = Integer.parseInt(request.getParameter("identity"));
+			Integer id = (Integer)request.getAttribute("id");
+			if(id == null) {
+				id = Integer.parseInt(request.getParameter("id"));
 			}
 			BookService service = factory.getService(BookService.class);
-			Book book = service.findByIdentity(identity);
+			Book book = service.findById(id);
 			if(book != null) {
 				request.setAttribute("book", book);
 			}
 		} catch(NumberFormatException e) {
 			try {
-				Integer selectedAuthorIdentity = Integer.parseInt(request.getParameter("authorIdentity"));
-				request.setAttribute("selectedAuthorIdentity", selectedAuthorIdentity);
+				Integer selectedAuthorId = Integer.parseInt(request.getParameter("authorId"));
+				request.setAttribute("selectedAuthorId", selectedAuthorId);
 			} catch(NumberFormatException e1) {}
 		}
 		return null;

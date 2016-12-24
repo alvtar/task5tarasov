@@ -24,9 +24,9 @@ public class BookSaveAction extends RegistrarAction {
 			Book book = validator.validate(request);
 			BookService service = factory.getService(BookService.class);
 			service.save(book);
-			forward.getAttributes().put("identity", book.getIdentity());
+			forward.getAttributes().put("id", book.getId());
 			forward.getAttributes().put("message", "Данные книги успешно сохранены");
-			logger.info(String.format("User \"%s\" saved book with identity %d", getAuthorizedUser().getLogin(), book.getIdentity()));
+			logger.info(String.format("User \"%s\" saved book with id %d", getAuthorizedUser().getLogin(), book.getId()));
 		} catch(IncorrectFormDataException e) {
 			forward.getAttributes().put("message", "Были обнаружены некорректные данные");
 			logger.warn(String.format("Incorrect data was found when user \"%s\" tried to save book", getAuthorizedUser().getLogin()), e);
