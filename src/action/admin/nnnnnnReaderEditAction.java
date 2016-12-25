@@ -11,7 +11,7 @@ import service.UserService;
 import domain.User;
 import exception.PersistentException;
 
-public class ReaderEditAction extends AdministratorAction {
+public class nnnnnnReaderEditAction extends AdministratorAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		try {

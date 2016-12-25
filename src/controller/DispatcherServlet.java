@@ -30,7 +30,7 @@ import exception.PersistentException;
 
 
 public class DispatcherServlet extends HttpServlet {
-        private static Logger logger = Logger.getLogger(DispatcherServlet.class);
+      private static Logger logger = Logger.getLogger(DispatcherServlet.class);
     
       public static final Level LOG_LEVEL = Level.ALL;  // Logging all events include Debug (many messages in console)
       //public static final Level LOG_LEVEL = Level.WARN; // Logging only Warning, Error & Fatal evens
@@ -49,34 +49,22 @@ public class DispatcherServlet extends HttpServlet {
       public static final String DB_USER = "app_periodicals";
       public static final String DB_PASSWORD = "app_pass711";
       
-      
-      
-      
       public static final int DB_POOL_START_SIZE = 10;
       public static final int DB_POOL_MAX_SIZE = 1000;
       public static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
       
 	public void init() {
-	    
-	    System.out.println("Dispatcher.init");
-	    
-	    
 	    try {
 	            Logger root = Logger.getRootLogger();
 	            Layout layout = new PatternLayout(LOG_MESSAGE_FORMAT);
 	            root.addAppender(new FileAppender(layout, LOG_FILE_NAME, true));
 	            root.addAppender(new ConsoleAppender(layout));
 	            root.setLevel(LOG_LEVEL);
-	            
-	            
-	            logger.info("DISPATCHER.INIT.BEFORE POOL");
-	            
+	                        
 	            // Creation database connection pool
 	            ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE,
 	                    DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
-	            
-////	            new ServiceRegistratorImpl();
 	            
 	        } catch (PersistentException | IOException e) {
 	            logger.fatal("It is impossible to initialize application", e);
@@ -86,17 +74,7 @@ public class DispatcherServlet extends HttpServlet {
 	    
 	
 	
-	    //// n????????????????????
 	public ServiceFactory getFactory() throws PersistentException {
-	   /*     try {
-                new ServiceRegistratorImpl();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-		return null;*/
-	    logger.info("DISPATCHER.getFACTORY");
-	    System.out.println("Dispatcher.getFactory");
 	    return new ServiceFactoryImpl(new TransactionFactoryImpl());
 		
 	}
@@ -110,9 +88,7 @@ public class DispatcherServlet extends HttpServlet {
 	}
 
 	private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-	    logger.info("DISPATCHER.PROCESS");
-	    System.out.println("Dispatcher.process");
-	        Action action = (Action)request.getAttribute("action");
+	    Action action = (Action)request.getAttribute("action");
 		try {
 			HttpSession session = request.getSession(false);
 			if(session != null) {

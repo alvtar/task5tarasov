@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import domain.User;
 import exception.IncorrectFormDataException;
 
-public class ReaderValidator implements Validator<User> {
+public class nnnnnnReaderValidator implements Validator<User> {
 	@Override
 	public User validate(HttpServletRequest request) throws IncorrectFormDataException {
 		User user = new User();

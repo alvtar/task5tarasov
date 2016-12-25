@@ -15,7 +15,7 @@ import domain.User;
 import exception.IncorrectFormDataException;
 import exception.PersistentException;
 
-public class ReaderSaveAction extends AdministratorAction {
+public class nnnnnnnnnReaderSaveAction extends AdministratorAction {
 	private static Logger logger = Logger.getLogger(ReaderSaveAction.class);
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {

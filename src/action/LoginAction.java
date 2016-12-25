@@ -25,14 +25,42 @@ public class LoginAction extends Action {
 
 	static {
 		menu.put(Role.SUBSCRIBER, new ArrayList<>(Arrays.asList(
-			new MenuItem("/search/book/form.html", "поиск книг"),
-			new MenuItem("/search/reader/form.html", "поиск читателей")
+			//new MenuItem("/search/book/form.html", "поиск издания по индексу"),
+			//new MenuItem("/search/reader/form.html", "поиск издания по наименованию")
+		        //new MenuItem("/user/list.html", "пользователи") //+++
+		        new MenuItem("/publication/list.html", "издания") //+++
+		        
 		)));
 		menu.put(Role.ADMINISTRATOR, new ArrayList<>(Arrays.asList(
-			new MenuItem("/reader/list.html", "читатели"),
-			new MenuItem("/user/list.html", "сотрудники")
+		        //new MenuItem("/reader/list.html", "читатели"),
+			new MenuItem("/user/list.html", "пользователи") //+++
 		)));
 
+		
+	/*	lst.add("МЕНЮ ПОДПИСЧИКА");
+	        lst.add("Сделайте свой выбор:");
+	        lst.add("1 - Поиск издания по индексу;");
+	        lst.add("2 - Поиск издания по наименованию;");
+	        lst.add("3 - Вывод полного списка изданий;");
+	        lst.add("4 - Вывод истории подписок;");
+	        lst.add("5 - Новая подписка;");
+	        lst.add("6 - Выход.");
+	        lst.add("> ");
+		
+		
+		     lst.add("МЕНЮ АДМИНИСТРАТОРА");
+        lst.add("Сделайте свой выбор:");
+        lst.add("1 - Поиск издания по индексу;");
+        lst.add("2 - Поиск издания по наименованию;");
+        lst.add("3 - Вывод полного списка изданий;");
+        lst.add("4 - Вывод полного списка подписок;");
+        lst.add("5 - Вывод полного списка пользователей;");
+        lst.add("6 - Новое издание;");
+        lst.add("7 - Выход.");
+        lst.add("> ");*/
+		
+		
+		
 	}
 
 	@Override

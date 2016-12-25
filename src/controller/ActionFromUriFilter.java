@@ -20,10 +20,11 @@ import action.LogoutAction;
 import action.MainAction;
 import action.ProfileEditAction;
 import action.ProfileSaveAction;
+import action.PublicationListAction;
 import action.admin.ReaderDeleteAction;
-import action.admin.ReaderEditAction;
-import action.admin.ReaderListAction;
-import action.admin.ReaderSaveAction;
+//import action.admin.ReaderEditAction;
+//import action.admin.ReaderListAction;
+//import action.admin.ReaderSaveAction;
 import action.admin.UserDeleteAction;
 import action.admin.UserEditAction;
 import action.admin.UserListAction;
@@ -59,17 +60,21 @@ public class ActionFromUriFilter implements Filter {
 		actions.put("/profile/edit", ProfileEditAction.class);
 		actions.put("/profile/save", ProfileSaveAction.class);
 
-		actions.put("/reader/list", ReaderListAction.class);
-		actions.put("/reader/edit", ReaderEditAction.class);
-		actions.put("/reader/save", ReaderSaveAction.class);
-		actions.put("/reader/delete", ReaderDeleteAction.class);
+//		actions.put("/reader/list", ReaderListAction.class);
+//		actions.put("/reader/edit", ReaderEditAction.class);
+//		actions.put("/reader/save", ReaderSaveAction.class);
+//		actions.put("/reader/delete", ReaderDeleteAction.class);
 
 		actions.put("/user/list", UserListAction.class);
 		actions.put("/user/edit", UserEditAction.class);
 		actions.put("/user/save", UserSaveAction.class);
 		actions.put("/user/delete", UserDeleteAction.class);
 
-		actions.put("/author/list", AuthorListAction.class);
+		
+		actions.put("/publication/list", PublicationListAction.class);
+		
+		
+		/* actions.put("/author/list", AuthorListAction.class);
 		actions.put("/author/edit", AuthorEditAction.class);
 		actions.put("/author/save", AuthorSaveAction.class);
 		actions.put("/author/delete", AuthorDeleteAction.class);
@@ -88,7 +93,7 @@ public class ActionFromUriFilter implements Filter {
 		actions.put("/reader/usages", ReaderUsageListAction.class);
 
 		actions.put("/author/book/deliver", DeliverBookAction.class);
-		actions.put("/author/book/return", ReturnBookAction.class);
+		actions.put("/author/book/return", ReturnBookAction.class);*/
 	}
 
 	@Override

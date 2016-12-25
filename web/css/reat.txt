@@ -1,0 +1,5 @@
+#page TR[onclick]:hover {
+	cursor: pointer;
+	background: #FF0000;
+
+выделение €чеек в табл

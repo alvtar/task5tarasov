@@ -15,6 +15,6 @@ abstract public class LibrarianAction extends Action {
 	public LibrarianAction() {
 		getAllowRoles().add(Role.SUBSCRIBER);
 		
-		logger.info("DISPATCHER.INIT.BEFORE POOL");
+		
 	}
 }

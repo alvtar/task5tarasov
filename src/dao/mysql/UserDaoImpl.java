@@ -28,9 +28,10 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
             statement.setInt(3, user.getRole().getId());
+            //statement.setInt(3, 1);                           /// TODO=====================!!!!!
             statement.setString(4, user.getFullName());
             statement.setInt(5, user.getZipCode());
-            statement.setString(6, "'" + user.getAddress() + "'");
+            statement.setString(6,user.getAddress());
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -110,7 +111,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
             statement = connection.prepareStatement(sql);
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
-            statement.setInt(3,1); // default SUBSRIBER role
+            statement.setInt(3,user.getRole().getId());
             statement.setString(4, user.getFullName());
             statement.setInt(5, user.getZipCode());
             statement.setString(6, user.getAddress());

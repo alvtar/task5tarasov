@@ -178,7 +178,7 @@ BODY {
 
 #page TR[onclick]:hover {
 	cursor: pointer;
-	background: #DED;
+	background: #FF0000;
 }
 
 #page TR.special {

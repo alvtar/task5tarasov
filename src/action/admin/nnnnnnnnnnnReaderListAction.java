@@ -11,7 +11,7 @@ import service.UserService;
 
 import exception.PersistentException;
 
-public class ReaderListAction extends AdministratorAction {
+public class nnnnnnnnnnnReaderListAction extends AdministratorAction {
 	@Override
 	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
 		UserService service = factory.getService(UserService.class);
