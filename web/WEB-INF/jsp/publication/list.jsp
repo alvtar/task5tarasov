@@ -5,14 +5,14 @@
 	<H2>Список периодических изданий</H2>
 	<TABLE>
 		<TR>
-
+            <TH>Id</TH>
 			<TH>Индекс</TH>
 			<TH>Наименование</TH>
             <TH>Цена подписки за месяц, руб</TH>
 			<TH>Доступно</TH>
 
 		</TR>
-		<c:url value="/user/edit.html" var="publicationListUrl"/>
+		<c:url value="/index.html" var="publicationListUrl"/>
 		<c:forEach items="${publications}" var="publication">
      <%--       //<c:choose>
 				//<c:when test="${not empty user.overdueUsages}">
@@ -32,7 +32,7 @@
 				<TD>${publication.issn}</TD>
                 <TD>${publication.title}</TD>
                 <TD>${publication.monthCost}</TD>
-				<TD>${user.active}</TD>
+				<TD>${publication.active}</TD>
 				
 			</TR>
 		</c:forEach>

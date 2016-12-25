@@ -8,10 +8,7 @@
 		<c:set var="id" value="${user.id}"/>
 		<c:set var="login" value="${user.login}"/>
 		<c:set var="password" value="${user.password}"/>
-
-        
         <c:set var="roleId" value="${user.role.id}"/>
-        
 		<c:set var="fullName" value="${user.fullName}"/>
 		<c:set var="zipCode" value="${user.zipCode}"/>
 		<c:set var="address" value="${user.address}"/>
@@ -33,11 +30,8 @@
 		<LABEL for="password">Пароль:</LABEL>
 		<INPUT type="text" id="password" name="password" value="${password}">
         
+        
         <LABEL for="role">Роль:</LABEL>
-		<INPUT type="text" id="role" name="role" value="${user.role.id}">
-        
-        
-   <%--     <LABEL for="role">Роль:</LABEL>
 		<SELECT id="role" name="role">
 			<c:forEach items="${roles}" var="role">
 				<c:remove var="selected"/>
@@ -48,11 +42,11 @@
 			</c:forEach>
 		</SELECT>
         
-        
-        --%>
+
         
 		<LABEL for="fullName">Ф.И.О.:</LABEL>
 		<INPUT type="text" id="fullName" name="fullName" value="${fullName}">
+        
 		<LABEL for="zipCode">Индекс:</LABEL>
 		<INPUT type="text" id="zipCode" name="zipCode" value="${zipCode}">
         

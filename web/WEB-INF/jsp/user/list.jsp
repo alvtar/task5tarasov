@@ -5,7 +5,7 @@
 	<H2>Список пользователей</H2>
 	<TABLE>
 		<TR>
-			<TH>Id</TH>
+			
 			<TH>Логин</TH>
 			<TH>Пароль</TH>
             <TH>Роль</TH>
@@ -25,12 +25,12 @@
 			//</c:choose>--%>
 			<TR onclick="submitFormById('form-${user.id}')" class="${classname}">
 				<TD>
-					${user.id}
+					${user.login}
 					<FORM id="form-${user.id}" action="${userEditUrl}" method="post">
 						<INPUT type="hidden" name="id" value="${user.id}">
 					</FORM>
 				</TD>
-				<TD>${user.login}</TD>
+				
                 <TD>${user.password}</TD>
                 <TD>${user.role.name}</TD>
 				<TD>${user.fullName}</TD>

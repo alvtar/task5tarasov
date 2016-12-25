@@ -41,7 +41,7 @@ public class UserValidator implements Validator<User> {
             
             parameter = request.getParameter("role");
             if(parameter != null && !parameter.isEmpty()) {
-                    user.setFullName(parameter);
+                    user.setRole(Role.getById(Integer.parseInt(parameter)));
             } else {
                     throw new IncorrectFormDataException("role", parameter);
             }
