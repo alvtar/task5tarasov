@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import action.admin.AdministratorAction;
 import domain.Publication;
 import domain.Role;
 import exception.PersistentException;

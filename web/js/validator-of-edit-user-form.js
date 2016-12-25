@@ -1,4 +1,4 @@
-function validateEditReader(form) {
+function validateEditUser(form) {
 	return validateForm(form, [{
 		id: "login",
 		message: "Поле «Логин» не заполнено",
@@ -13,8 +13,8 @@ function validateEditReader(form) {
 		checker: checkNotEmpty
 	}, {
 		id: "zipCode",
-		message: "Поле «Почтовый индекс» не заполнено",
-		checker: checkNotEmpty
+		message: "Поле «Почтовый индекс» должно содержать 6 цифр",
+		checker: checkZipCode
 	}, {
 		id: "address",
 		message: "Поле «Адрес» не заполнено",
@@ -27,7 +27,6 @@ function checkLibraryCardNumber(value) {
     return checkRegexp(value, ".");
 }
 
-function checkPhone(value) {
-	//return checkRegexp(value, "^\\+\\d{1,3} \\(((\\d{2}\\) \\d{3})|(\\d{3}\\) \\d{2})|(\\d{4}\\) \\d))-\\d{2}-\\d{2}$");
-    return checkRegexp(value, ".");
+function checkZipCode(value) {
+	return checkRegexp(value, "^\\d{6}$");
 }

@@ -15,14 +15,7 @@
 		</TR>
 		<c:url value="/user/edit.html" var="userEditUrl"/>
 		<c:forEach items="${users}" var="user">
-     <%--       //<c:choose>
-				//<c:when test="${not empty user.overdueUsages}">
-				//	<c:set var="classname" value="special"/>
-				//</c:when>
-				//<c:otherwise>
-				//	<c:remove var="classname"/>
-				//</c:otherwise>
-			//</c:choose>--%>
+
 			<TR onclick="submitFormById('form-${user.id}')" class="${classname}">
 				<TD>
 					${user.login}

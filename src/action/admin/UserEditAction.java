@@ -28,24 +28,5 @@ public class UserEditAction extends AdministratorAction {
             return null;
     }
     
-    
-    
-    
-    
-        /*@Override user--
-	public Action.Forward exec(HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-		request.setAttribute("roles", Role.values());
-		try {
-			Integer id = (Integer)request.getAttribute("id");
-			if(id == null) {
-				id = Integer.parseInt(request.getParameter("id"));
-			}
-			UserService service = factory.getService(UserService.class);
-			User user = service.findById(id);
-			if(user != null) {
-				request.setAttribute("user", user);
-			}
-		} catch(NumberFormatException e) {}
-		return null; */
 	
 }

@@ -2,19 +2,14 @@ package validator;
 
 import java.util.HashMap;
 import java.util.Map;
-
-
 import domain.Entity;
-
 import domain.User;
 
 public class ValidatorFactory {
 	private static Map<Class<? extends Entity>, Class<? extends Validator<?>>> validators = new HashMap<>();
 
 	static {
-	//	validators.put(Author.class, AuthorValidator.class);
-	//	validators.put(Book.class, BookValidator.class);
-	//	validators.put(Reader.class, ReaderValidator.class);
+
 		validators.put(User.class, UserValidator.class);
 	}
 

@@ -24,15 +24,13 @@ public class LoginAction extends Action {
 	private static Map<Role, List<MenuItem>> menu = new ConcurrentHashMap<>();
 
 	static {
-		menu.put(Role.SUBSCRIBER, new ArrayList<>(Arrays.asList(
-			//new MenuItem("/search/book/form.html", "поиск издания по индексу"),
-			//new MenuItem("/search/reader/form.html", "поиск издания по наименованию")
-		        //new MenuItem("/user/list.html", "пользователи") //+++
+		menu.put(Role.SUBSCRIBER, new ArrayList<>(Arrays.asList(	
+			//new MenuItem("/publication/search/form.html", "поиск издания по наименованию")
 		        new MenuItem("/publication/list.html", "издания") //+++
 		        
 		)));
 		menu.put(Role.ADMINISTRATOR, new ArrayList<>(Arrays.asList(
-		        //new MenuItem("/reader/list.html", "читатели"),
+		        //new MenuItem("/subscription/list.html", "подписки"),
 			new MenuItem("/user/list.html", "пользователи") //+++
 		)));
 

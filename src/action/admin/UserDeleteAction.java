@@ -19,7 +19,7 @@ public class UserDeleteAction extends AdministratorAction {
 			UserService service = factory.getService(UserService.class);
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			service.delete(id);
-			forward.getAttributes().put("message", "Сотрудник успешно удалён");
+			forward.getAttributes().put("message", "Пользователь успешно удалён");
 			logger.info(String.format("User \"%s\" deleted user with id %d", getAuthorizedUser().getLogin(), id));
 		} catch(NumberFormatException e) {
 			logger.warn(String.format("Incorrect data was found when user \"%s\" tried to delete user", getAuthorizedUser().getLogin()), e);

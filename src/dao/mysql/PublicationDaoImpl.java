@@ -232,7 +232,7 @@ public class PublicationDaoImpl extends BaseDaoImpl implements PublicationDao {
     @Override
     public List<Publication> read() throws PersistentException {
         String sql = "SELECT `id`, `issn`, `title`, `monthCost`, `active`, "
-                + "`lastUpdate` FROM `publications` ORDER BY `id`";
+                + "`lastUpdate` FROM `publications` ORDER BY `issn`";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {

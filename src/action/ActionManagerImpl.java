@@ -14,8 +14,8 @@ public class ActionManagerImpl implements ActionManager {
 	}
 
 	@Override
-	public Action.Forward execute(Action action, HttpServletRequest request, HttpServletResponse response) throws PersistentException {
-		action.setFactory(factory);
+	public Action.Forward execute(Action action, HttpServletRequest request, 
+	        HttpServletResponse response) throws PersistentException { action.setFactory(factory);
 		return action.exec(request, response);
 	}
 

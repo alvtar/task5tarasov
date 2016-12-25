@@ -1,11 +1,8 @@
 package controller;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Map;
-import java.util.Properties;
 
+import java.io.IOException;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +16,6 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import service.ServiceFactory;
 import service.ServiceFactoryImpl;
-import service.ServiceRegistratorImpl;
 import action.Action;
 import action.ActionManager;
 import action.ActionManagerFactory;
@@ -30,7 +26,9 @@ import exception.PersistentException;
 
 
 public class DispatcherServlet extends HttpServlet {
-      private static Logger logger = Logger.getLogger(DispatcherServlet.class);
+    private static final long serialVersionUID = 1L;
+
+    private static Logger logger = Logger.getLogger(DispatcherServlet.class);
     
       public static final Level LOG_LEVEL = Level.ALL;  // Logging all events include Debug (many messages in console)
       //public static final Level LOG_LEVEL = Level.WARN; // Logging only Warning, Error & Fatal evens
@@ -38,13 +36,7 @@ public class DispatcherServlet extends HttpServlet {
       public static final String LOG_FILE_NAME = "log.txt";
       public static final String LOG_MESSAGE_FORMAT = "%n%d%n%p\t%C.%M:%L%n%m%n";
 
-      public static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
-      
-      
-      //public static final String DB_URL = "jdbc:mysql://localhost:3306/library_db?useUnicode=true&characterEncoding=UTF-8";
-      //public static final String DB_USER = "library_user";
-      //public static final String DB_PASSWORD = "library_password";
-      
+      public static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";     
       public static final String DB_URL = "jdbc:mysql://localhost:3306/periodicals?useUnicode=true&characterEncoding=UTF-8";
       public static final String DB_USER = "app_periodicals";
       public static final String DB_PASSWORD = "app_pass711";
@@ -71,8 +63,7 @@ public class DispatcherServlet extends HttpServlet {
 	            destroy();
 	        }
 	}
-	    
-	
+	    	
 	
 	public ServiceFactory getFactory() throws PersistentException {
 	    return new ServiceFactoryImpl(new TransactionFactoryImpl());

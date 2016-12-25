@@ -5,7 +5,7 @@
 	<H2>Список периодических изданий</H2>
 	<TABLE>
 		<TR>
-            <TH>Id</TH>
+            
 			<TH>Индекс</TH>
 			<TH>Наименование</TH>
             <TH>Цена подписки за месяц, руб</TH>
@@ -14,22 +14,15 @@
 		</TR>
 		<c:url value="/index.html" var="publicationListUrl"/>
 		<c:forEach items="${publications}" var="publication">
-     <%--       //<c:choose>
-				//<c:when test="${not empty user.overdueUsages}">
-				//	<c:set var="classname" value="special"/>
-				//</c:when>
-				//<c:otherwise>
-				//	<c:remove var="classname"/>
-				//</c:otherwise>
-			//</c:choose>--%>
+
 			<TR onclick="submitFormById('form-${publication.id}')" class="${classname}">
 				<TD>
-					${publication.id}
+					${publication.issn}
 					<FORM id="form-${publication.id}" action="${publicationListUrl}" method="post">
 						<INPUT type="hidden" name="id" value="${publication.id}">
 					</FORM>
 				</TD>
-				<TD>${publication.issn}</TD>
+				
                 <TD>${publication.title}</TD>
                 <TD>${publication.monthCost}</TD>
 				<TD>${publication.active}</TD>
